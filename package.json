@@ -19,5 +19,8 @@
   "homepage": "https://github.com/bcruddy/is-it-the-caps-year#readme",
   "devDependencies": {
     "flyswatter": "^2.1.0"
+  },
+  "dependencies": {
+    "is-thirteen": "^2.0.0"
   }
 }
