@@ -11,21 +11,9 @@
     <title>Caps year?</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style>
-        body {
-            font-size: 16px;
-            margin: 0;
-            padding: 0;
-        }
-
-        h1,
-        h3,
-        div {
-            text-align: center;
-        }
-
-        img {
-            width: 100%;
-        }
+        body { font-size: 16px; margin: 0; padding: 0; }
+        h1, h3, div { text-align: center; }
+        img { width: 100%; }
     </style>
 </head>
 <body>
@@ -33,31 +21,19 @@
 <div>
     <img id="photo" src="/images/pft-caps-guy.jpg" />
 </div>
-<div>
-    <h3>
-        <a href="https://goatattack.com?caps-year=true">goat attack</a>
-    </h3>
-</div>
+<h3 id="goat-attack-plug">
+    <a href="https://goatattack.com?caps-year=true">goat attack</a>
+</h3>
 <script>
-    function init() {
-        randomPhoto();
-        randomSlogan();
-    }
-
-    function randomPhoto() {
-        var photo = document.getElementById('photo');
-        var list = [
+    var cy = {
+        photo: document.getElementById('photo'),
+        slogan: document.getElementById('slogan'),
+        photoList: [
             '/images/pft-caps-guy.jpg',
             '/images/coach-o.jpg',
             '/images/pft-clouds.jpg'
-        ];
-
-        photo.setAttribute('src', list.random());
-    }
-
-    function randomSlogan () {
-        var slogan = document.getElementById('slogan');
-        var list = [
+        ],
+        sloganList: [
             'definitely not nervous',
             'fuck yeah it is',
             'CAPS YEAR OUR YEAR CAPS YEAR',
@@ -65,19 +41,29 @@
             'NOT worried!',
             'eat a dick 3rd leg greg',
             'CAPSules year',
-            'our year to CAPITALize'
-        ];
+            'what panic button?',
+            'the parallax effect'
+        ],
 
-        slogan.innerText = list.random();
-    }
+        init: function () {
+            setInterval((function () {
+                this.randomPhoto();
+                this.randomSlogan();
+            }).bind(this), 3000);
+        },
+        randomPhoto: function () {
+            this.photo.setAttribute('src', this.photoList.random());
+        },
+        randomSlogan: function () {
+            this.slogan.innerText = this.sloganList.random();
+        }
+    };
 
     Array.prototype.random = function () {
         return this[Math.floor(Math.random() * this.length)];
     };
 
-    init();
-
-    setInterval(function () { init(); }, 2500);
+    cy.init();
 </script>
 </body>
 </html>
